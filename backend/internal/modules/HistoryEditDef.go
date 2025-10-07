@@ -5,6 +5,6 @@ type HistoryEditDef struct {
 	DefectID     int     `json:"defectId"`
 	Changecolumn string  `json:"changecolumn"`
 	Oldvalue     *string `json:"oldvalue"`
-	Newvalue     string  `json:"newvalue"`
+	Newvalue     *string `json:"newvalue"`
 	Modified_at  string  `json:"modified_at"`
 }

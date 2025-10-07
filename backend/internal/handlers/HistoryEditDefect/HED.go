@@ -4,7 +4,6 @@ import (
 	"accounting-system/internal/modules"
 	"accounting-system/internal/services"
 	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
@@ -19,7 +18,7 @@ func NewHandler(hEDService *services.HistoryEditDefectService) *hEDHandler {
 }
 
 func (h *hEDHandler) GetHEDByID(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
+	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
@@ -38,7 +37,7 @@ func (h *hEDHandler) GetHEDByID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.WriteHeader(http.StatusOK)
-	err = json.NewEncoder(w).Encode(map[string][]*modules.HistoryEditDef{fmt.Sprintf("HED by ID: %d", req.ID): hed})
+	err = json.NewEncoder(w).Encode(map[string][]*modules.HistoryEditDef{"heds": hed})
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

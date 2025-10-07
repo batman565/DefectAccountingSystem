@@ -67,6 +67,9 @@ func (r *defectRepository) Update(defect *modules.Defect) error {
 		args = append(args, defect.DoPerson_id)
 		argcount++
 	}
+	if defect.DoPerson_id == 0 {
+		query += ` doperson_id = NULL,`
+	}
 	query = query[:len(query)-1]
 	query += fmt.Sprintf(` WHERE id = $%d 
 	returning id, object_id, regperson_id, created_at`, argcount)

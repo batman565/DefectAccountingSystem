@@ -77,8 +77,8 @@ func (s *FileService) saveFileToDisk(fileHeader *multipart.FileHeader, defectID 
 	if _, err := io.Copy(dst, file); err != nil {
 		return "", fmt.Errorf("error copying file: %w", err)
 	}
-
-	return filePath, nil
+	publicPath := "http://localhost:8080/storage/" + uniqueName
+	return publicPath, nil
 }
 
 func (s *FileService) GetFilesByDefect(defectID int) ([]*modules.File, error) {

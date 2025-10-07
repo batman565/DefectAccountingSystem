@@ -60,7 +60,7 @@ func (c *CommentHandler) CreateCommentHandler(w http.ResponseWriter, r *http.Req
 }
 
 func (c *CommentHandler) GetCommentsHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
+	if r.Method != http.MethodPost {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		json.NewEncoder(w).Encode(map[string]string{"error": "Method not allowed"})
 		return

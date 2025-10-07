@@ -176,7 +176,7 @@ func (d *DefectHandler) GetAllDefectsHandler(w http.ResponseWriter, r *http.Requ
 }
 
 func (d *DefectHandler) GetDefectHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
+	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
@@ -208,7 +208,7 @@ func (d *DefectHandler) GetDefectHandler(w http.ResponseWriter, r *http.Request)
 }
 
 func (d *DefectHandler) GetDefectsByObjectID(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
+	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
@@ -236,11 +236,11 @@ func (d *DefectHandler) GetDefectsByObjectID(w http.ResponseWriter, r *http.Requ
 		return
 	}
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string][]*modules.ResponseDefectAll{fmt.Sprintf("defects where ID: %d", req.ID): defects})
+	json.NewEncoder(w).Encode(map[string][]*modules.ResponseDefectAll{"defects": defects})
 }
 
 func (d *DefectHandler) GetDefectsByRegPersonID(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
+	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
@@ -268,11 +268,11 @@ func (d *DefectHandler) GetDefectsByRegPersonID(w http.ResponseWriter, r *http.R
 		return
 	}
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string][]*modules.ResponseDefectAll{fmt.Sprintf("defects where ID: %d", req.ID): defects})
+	json.NewEncoder(w).Encode(map[string][]*modules.ResponseDefectAll{"defects": defects})
 }
 
 func (d *DefectHandler) GetDefectsByDoPersonID(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
+	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
@@ -300,5 +300,5 @@ func (d *DefectHandler) GetDefectsByDoPersonID(w http.ResponseWriter, r *http.Re
 		return
 	}
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string][]*modules.ResponseDefectAll{fmt.Sprintf("defects where ID: %d", req.ID): defects})
+	json.NewEncoder(w).Encode(map[string][]*modules.ResponseDefectAll{"defects": defects})
 }

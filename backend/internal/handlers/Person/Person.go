@@ -150,7 +150,7 @@ func (p *PersonHandler) DeletePersonHandler(w http.ResponseWriter, r *http.Reque
 }
 
 func (p *PersonHandler) GetPersonHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "GET" {
+	if r.Method != "POST" {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
